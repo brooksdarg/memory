@@ -19,9 +19,7 @@ def playing_view(request):
     session = request.session
     if 'grid' in session:
             grid = session['grid']
-            pprint( grid )
             random.shuffle(grid)
-            pprint( grid )
             session['grid'] = grid
     else:
             originals = random.sample(range(111), 16)

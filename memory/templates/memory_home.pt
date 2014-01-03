@@ -87,13 +87,11 @@
 
 <!-- How this works -->
 <div class="row">
-<div class="col-sm-10 col-sm-offset-1">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. The orb icons show your progress. 
-</div>
+<div class="col-sm-5 col-sm-offset-1">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. The orb icons show your progress. 
 </div>
 
 <!-- progress -->
-<div class="row">
-<div class="col-sm-10 col-sm-offset-1">
+<div class="col-sm-5">
 <center>
 <img width="30" height="30" id="icon_0" src="/static/icons/Orb_Icons_010.png"/>
 <img width="30" height="30" id="icon_1" src="/static/icons/Orb_Icons_011.png"/>

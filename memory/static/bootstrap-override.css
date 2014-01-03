@@ -2,3 +2,16 @@
   margin: 0px 0 20px;
 }
 
+img.img-responsive{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.col-xs-3{
+  padding-right: 3px;
+  padding-left: 3px;
+}
