@@ -84,19 +84,21 @@
   <h4> <a href="/">Train Your Memory</a> <small>Learn to associate images.</small></h4>
 </div>
 
-<div class="row">
 
 <!-- How this works -->
-<div class="col-sm-9">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. 
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. The orb icons show your progress. 
+</div>
 </div>
 
-
 <!-- progress -->
-<div class="col-sm-3">
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">
+<center>
 <img width="30" height="30" id="icon_0" src="/static/icons/Orb_Icons_010.png"/>
 <img width="30" height="30" id="icon_1" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_2" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_3" src="/static/icons/Orb_Icons_011.png"/><br>
+<img width="30" height="30" id="icon_3" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_4" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_5" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_6" src="/static/icons/Orb_Icons_011.png"/>
@@ -104,14 +106,13 @@
 <img width="30" height="30" id="icon_8" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_9" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_10" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_11" src="/static/icons/Orb_Icons_011.png"/><br>
+<img width="30" height="30" id="icon_11" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_12" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_13" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_14" src="/static/icons/Orb_Icons_011.png"/>
 <img width="30" height="30" id="icon_15" src="/static/icons/Orb_Icons_011.png"/>
+</center>
 </div>
-
-
 </div>
 <br><br>
 
