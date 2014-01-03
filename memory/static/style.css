@@ -1,0 +1,57 @@
+
+#or {
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+}
+
+#notfound {
+  background-color: #fbe3e4;
+  border-top: 2px solid #fbc2c4;
+  border-bottom: 2px solid #fbc2c4;
+  padding: 0 20px 30px 20px;
+}
+
+#tasks {
+  width: 500px;
+}
+
+#tasks li {
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid #bbbbbb;
+}
+
+#tasks li.last {
+  border-bottom: none;
+}
+
+#choices .choice {
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+#choices .or {
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+#flag-skip {
+  font-size: 12px;
+  display: inline-block;
+  text-align: right;
+}
+
+#dimensions .dimension{
+  font-size:14px;
+}
+#dimensions .current_dimension{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#add-question{
+  width: 200px;
+}
+

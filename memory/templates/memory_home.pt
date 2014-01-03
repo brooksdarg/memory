@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+
+  <meta charset="utf-8"/>
+  <title>Improve Your Memory</title>
+  <meta name="author" content="Unicow Inc."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Play this game to improve your memory. Memory training through games."/>
+  <link rel="canonical" href="http://memorygame.com" />
+  <link rel="shortcut icon" href="/static/red_u.gif">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap-override.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+  <script type="text/javascript">
+    var choiceCount = 0;
+ 
+    function choose(id){
+
+      var seq = getCookie("currSeq");
+
+      // if we have currSeq check if the selection was correct
+      if (seq!=""){
+        //setCookie("currSeq",seq+","+id,365);
+        
+ 
+        // if correct, check if finished
+        var currSeq = seq.split(',');
+        if ( currSeq[choiceCount] == id ){
+           document.getElementById("icon_"+choiceCount).src = "/static/icons/Orb_Icons_012.png";
+           $("#img_" + id).fadeTo( "slow", 0.2 );
+           choiceCount++;
+
+           if (currSeq.length == choiceCount){
+               document.getElementById("icon_"+(choiceCount)).src = "/static/icons/Orb_Icons_014.png";
+           }else{
+               document.getElementById("icon_"+(choiceCount)).src = "/static/icons/Orb_Icons_010.png";
+           }
+        }else{
+           if (currSeq.length == choiceCount){   // new id, add it
+              setCookie("currSeq",seq+","+id,365);
+              $("#img_" + id).fadeTo( "slow", 0.7 );
+              location.reload(true);
+           }else{                           // wrong choice, game over
+             setCookie("currSeq","",365);
+             alert("Game Over");
+             location.assign('/');
+           }
+        }    
+         
+      }else{    // no current sequence start one and refresh
+        setCookie("currSeq",id,365);
+        $("#img_" + id).fadeTo( "slow", 0.7 );
+        location.assign('/playing');
+      }
+    }
+
+    function getCookie(cname){
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0; i<ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+      }
+      return "";
+    }
+
+    function setCookie(cname,cvalue,exdays){
+      var d = new Date();
+      d.setTime(d.getTime()+(exdays*24*60*60*1000));
+      var expires = "expires="+d.toGMTString();
+      document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+  </script>
+
+</head>
+<body>
+
+<div class="container">
+<div class="page-header">
+  <h4> <a href="/">Train Your Memory</a> <small>Learn to associate images.</small></h4>
+</div>
+
+<div class="row">
+
+<!-- How this works -->
+<div class="col-sm-9">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. 
+</div>
+
+
+<!-- progress -->
+<div class="col-sm-3">
+<img width="30" height="30" id="icon_0" src="/static/icons/Orb_Icons_010.png"/>
+<img width="30" height="30" id="icon_1" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_2" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_3" src="/static/icons/Orb_Icons_011.png"/><br>
+<img width="30" height="30" id="icon_4" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_5" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_6" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_7" src="/static/icons/Orb_Icons_011.png"/><br>
+<img width="30" height="30" id="icon_8" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_9" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_10" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_11" src="/static/icons/Orb_Icons_011.png"/><br>
+<img width="30" height="30" id="icon_12" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_13" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_14" src="/static/icons/Orb_Icons_011.png"/>
+<img width="30" height="30" id="icon_15" src="/static/icons/Orb_Icons_011.png"/>
+</div>
+
+
+</div>
+<br><br>
+
+
+<!-- grid -->
+<div class="row">
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[0]}.jpg" onClick="choose(${grid[0]})" id="img_${grid[0]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[1]}.jpg" onClick="choose(${grid[1]})" id="img_${grid[1]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[2]}.jpg" onClick="choose(${grid[2]})" id="img_${grid[2]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[3]}.jpg" onClick="choose(${grid[3]})" id="img_${grid[3]}"/></div>
+</div>
+<div class="row">
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[4]}.jpg" onClick="choose(${grid[4]})" id="img_${grid[4]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[5]}.jpg" onClick="choose(${grid[5]})" id="img_${grid[5]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[6]}.jpg" onClick="choose(${grid[6]})" id="img_${grid[6]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[7]}.jpg" onClick="choose(${grid[7]})" id="img_${grid[7]}"/></div>
+</div>
+<div class="row">
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[8]}.jpg" onClick="choose(${grid[8]})" id="img_${grid[8]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[9]}.jpg" onClick="choose(${grid[9]})" id="img_${grid[9]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[10]}.jpg" onClick="choose(${grid[10]})" id="img_${grid[10]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[11]}.jpg" onClick="choose(${grid[11]})" id="img_${grid[11]}"/></div>
+</div>
+<div class="row">
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[12]}.jpg" onClick="choose(${grid[12]})" id="img_${grid[12]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[13]}.jpg" onClick="choose(${grid[13]})" id="img_${grid[13]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[14]}.jpg" onClick="choose(${grid[14]})" id="img_${grid[14]}"/></div>
+  <div class="col-xs-3"><img class="img-responsive" src="/static/memory_images/${grid[15]}.jpg" onClick="choose(${grid[15]})" id="img_${grid[15]}"/></div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
