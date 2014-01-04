@@ -58,7 +58,7 @@
               setCookie("currSeq",seq+","+id,365);
               $("#img_" + id).fadeTo( "slow", 0.7 );
               document.getElementById("instructions").innerHTML = "Good, you now have "+(choiceCount+1)+" images in your sequence";
-              location.reload(true);
+              setTimeout(function() { location.reload(true); }, 1500);
            }else{                           // wrong choice, game over
              setCookie("currSeq","",365);
              alert("Game Over, you have chosen the wrong image.");
@@ -163,6 +163,18 @@
 
 </div>
 
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46066616-2', 'trainmemory.com');
+  ga('send', 'pageview');
+
+</script>
 
 
 </body>
