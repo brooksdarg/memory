@@ -17,6 +17,17 @@
   <script type="text/javascript">
     var choiceCount = 0;
  
+    window.onload = runOnLoad;
+    function runOnLoad(){
+      if ( !getCookie("currSeq")){
+         document.getElementById("instructions").innerHTML = "Choose a first image to memorize";
+      }else{
+         if(choiceCount == 0){
+            document.getElementById("instructions").innerHTML = "Select the first image you have memorized";
+         }
+      }
+    }
+ 
     function choose(id){
 
       var seq = getCookie("currSeq");
@@ -29,23 +40,28 @@
         // if correct, check if finished
         var currSeq = seq.split(',');
         if ( currSeq[choiceCount] == id ){
-           document.getElementById("icon_"+choiceCount).src = "/static/icons/Orb_Icons_012.png";
+           document.getElementById("progress_"+choiceCount).style.color = "lime";
+           document.getElementById("progress_"+choiceCount).style.textDecoration = "none";
            $("#img_" + id).fadeTo( "slow", 0.2 );
            choiceCount++;
 
            if (currSeq.length == choiceCount){
-               document.getElementById("icon_"+(choiceCount)).src = "/static/icons/Orb_Icons_014.png";
+               document.getElementById("instructions").innerHTML = "Good, now choose another image to memorize";
+               document.getElementById("progress_"+choiceCount).style.textDecoration = "overline";
            }else{
-               document.getElementById("icon_"+(choiceCount)).src = "/static/icons/Orb_Icons_010.png";
+               document.getElementById("instructions").innerHTML = "Good, now select the next image you have memorized";
+               document.getElementById("progress_"+choiceCount).style.color = "black";
+               document.getElementById("progress_"+choiceCount).style.textDecoration = "overline";
            }
         }else{
            if (currSeq.length == choiceCount){   // new id, add it
               setCookie("currSeq",seq+","+id,365);
               $("#img_" + id).fadeTo( "slow", 0.7 );
+              document.getElementById("instructions").innerHTML = "Good, you now have "+(choiceCount+1)+" images in your sequence";
               location.reload(true);
            }else{                           // wrong choice, game over
              setCookie("currSeq","",365);
-             alert("Game Over");
+             alert("Game Over, you have chosen the wrong image.");
              location.assign('/');
            }
         }    
@@ -85,32 +101,36 @@
 </div>
 
 
-<!-- How this works -->
-<div class="row">
-<div class="col-sm-5 col-sm-offset-1">Choose an image and remember it. Select the image you remembered, if you are correct, choose a second image. Keep selecting the images in the order you first chose them. The orb icons show your progress. 
+<!--instructions-->
+<div class="col-sm-10 col-sm-offset-1">
+<center>
+<h4 id="instructions">
+</h4>
+</center>
 </div>
 
 <!-- progress -->
-<div class="col-sm-5">
+<div class="col-sm-10 col-sm-offset-1">
 <center>
-<img width="30" height="30" id="icon_0" src="/static/icons/Orb_Icons_010.png"/>
-<img width="30" height="30" id="icon_1" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_2" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_3" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_4" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_5" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_6" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_7" src="/static/icons/Orb_Icons_011.png"/><br>
-<img width="30" height="30" id="icon_8" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_9" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_10" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_11" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_12" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_13" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_14" src="/static/icons/Orb_Icons_011.png"/>
-<img width="30" height="30" id="icon_15" src="/static/icons/Orb_Icons_011.png"/>
+<h4>
+<span id="progress_0" style="text-decoration:overline">1</span>&nbsp;&nbsp;
+<span id="progress_1" style="color:lightgray;">2</span>&nbsp;&nbsp;
+<span id="progress_2" style="color:lightgray;">3</span>&nbsp;&nbsp;
+<span id="progress_3" style="color:lightgray;">4</span>&nbsp;&nbsp;
+<span id="progress_4" style="color:lightgray;">5</span>&nbsp;&nbsp;
+<span id="progress_5" style="color:lightgray;">6</span>&nbsp;&nbsp;
+<span id="progress_6" style="color:lightgray;">7</span>&nbsp;&nbsp;
+<span id="progress_7" style="color:lightgray;">8</span>&nbsp;&nbsp;
+<span id="progress_8" style="color:lightgray;">9</span>&nbsp;&nbsp;
+<span id="progress_9" style="color:lightgray;">10</span>&nbsp;&nbsp;
+<span id="progress_10" style="color:lightgray;">11</span>&nbsp;&nbsp;
+<span id="progress_11" style="color:lightgray;">12</span>&nbsp;&nbsp;
+<span id="progress_12" style="color:lightgray;">13</span>&nbsp;&nbsp;
+<span id="progress_13" style="color:lightgray;">14</span>&nbsp;&nbsp;
+<span id="progress_14" style="color:lightgray;">15</span>&nbsp;&nbsp;
+<span id="progress_15" style="color:lightgray;">16</span>&nbsp;&nbsp;
+</h4>
 </center>
-</div>
 </div>
 <br>
 
